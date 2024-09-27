@@ -35,6 +35,9 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
+// 1. SafariViewController // min control
+// 2. WebKitViewController // max control
+
   Future<void> createSession() async {
     try {
       _setStatus('pending');
@@ -96,7 +99,7 @@ class _HomePageState extends State<HomePage> {
               padding: EdgeInsets.symmetric(horizontal: 16),
               child: TabbyPresentationSnippet(
                 price: '100.00',
-                currency: Currency.aed,
+                currency: Currency.sar,
                 lang: Lang.en,
               ),
             ),
@@ -115,12 +118,12 @@ class _HomePageState extends State<HomePage> {
               textAlign: TextAlign.center,
             ),
             Text(
-              mockPayload.buyer?.email ?? '',
+              mockPayload.buyer.email,
               style: Theme.of(context).textTheme.titleLarge,
               textAlign: TextAlign.center,
             ),
             Text(
-              mockPayload.buyer?.phone ?? '',
+              mockPayload.buyer.phone,
               style: Theme.of(context).textTheme.titleLarge,
               textAlign: TextAlign.center,
             ),
