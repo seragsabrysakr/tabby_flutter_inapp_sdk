@@ -96,15 +96,12 @@ enum OrderHistoryItemPaymentMethod {
 }
 
 enum Environment {
-  stage,
   production,
 }
 
 extension EnvironmentExt on Environment {
   String get host {
     switch (this) {
-      case Environment.stage:
-        return 'https://api.tabby.dev/';
       case Environment.production:
         return 'https://api.tabby.ai/';
     }
@@ -112,8 +109,6 @@ extension EnvironmentExt on Environment {
 
   String get analyticsHost {
     switch (this) {
-      case Environment.stage:
-        return 'https://dp-event-collector.tabby.dev/v1/t';
       case Environment.production:
         return 'https://dp-event-collector.tabby.ai/v1/t';
     }
