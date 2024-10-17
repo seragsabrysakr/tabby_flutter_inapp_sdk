@@ -15,7 +15,6 @@ void main() {
     // Build our app and trigger a frame.
     TabbySDK().setup(
       withApiKey: 'pk_test_key', // Put here your Api key
-      // environment: Environment.production, // Or use Environment.stage
     );
     await tester.pumpWidget(const MyApp());
 
