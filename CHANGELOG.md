@@ -1,3 +1,7 @@
+## 1.6.1
+
+- `Environment.stage` removed from SDK internals
+
 ## 1.6.0
 
 - ❗️Breaking change: update required fields for `TabbySDK().createSession(TabbyCheckoutPayload payload) {...}`
