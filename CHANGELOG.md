@@ -1,3 +1,7 @@
+## 1.6.2
+
+- `TabbyCheckoutSnippet` reworked to use png images
+
 ## 1.6.1
 
 - `Environment.stage` removed from SDK internals

@@ -1,6 +1,6 @@
 name: tabby_flutter_inapp_sdk
 description: Tabby Flutter SDK
-version: 1.6.1
+version: 1.6.2
 homepage: https://github.com/tabby-ai/tabby_flutter_inapp_sdk
 
 environment:
@@ -30,10 +30,10 @@ flutter:
     - assets/images/tabby-badge.png
     - assets/images/2.0x/tabby-badge.png
     - assets/images/3.0x/tabby-badge.png
-    - assets/images/r1.jpg
-    - assets/images/r2.jpg
-    - assets/images/r3.jpg
-    - assets/images/r4.jpg
+    - assets/images/r1.png
+    - assets/images/r2.png
+    - assets/images/r3.png
+    - assets/images/r4.png
   fonts:
     - family: Inter
       fonts:

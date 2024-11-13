@@ -52,40 +52,27 @@ class _TabbyCheckoutSnippetState extends State<TabbyCheckoutSnippet> {
         ),
         gap,
         gap,
-        Stack(
+        Row(
           children: [
-            Positioned(
-              top: 20,
-              left: 16 + 20,
-              right: 16 + 20,
-              child: Container(
-                height: 1,
-                color: dividerColor,
-              ),
+            CheckoutSnippetCell(
+              position: 1,
+              localeStrings: localeStrings,
+              amountText: amountText,
             ),
-            Row(
-              children: [
-                CheckoutSnippetCell(
-                  position: 1,
-                  localeStrings: localeStrings,
-                  amountText: amountText,
-                ),
-                CheckoutSnippetCell(
-                  position: 2,
-                  localeStrings: localeStrings,
-                  amountText: amountText,
-                ),
-                CheckoutSnippetCell(
-                  position: 3,
-                  localeStrings: localeStrings,
-                  amountText: amountText,
-                ),
-                CheckoutSnippetCell(
-                  position: 4,
-                  localeStrings: localeStrings,
-                  amountText: amountText,
-                ),
-              ],
+            CheckoutSnippetCell(
+              position: 2,
+              localeStrings: localeStrings,
+              amountText: amountText,
+            ),
+            CheckoutSnippetCell(
+              position: 3,
+              localeStrings: localeStrings,
+              amountText: amountText,
+            ),
+            CheckoutSnippetCell(
+              position: 4,
+              localeStrings: localeStrings,
+              amountText: amountText,
             ),
           ],
         ),
@@ -108,10 +95,33 @@ class CheckoutSnippetCell extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isFirst = position == 1;
+    final isLast = position == 4;
     return Expanded(
       child: Column(
         children: [
-          CheckoutSnippetImage(position: position),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Expanded(
+                child: isFirst
+                    ? const SizedBox.shrink()
+                    : Container(
+                        height: 1,
+                        color: dividerColor,
+                      ),
+              ),
+              CheckoutSnippetImage(position: position),
+              Expanded(
+                child: isLast
+                    ? const SizedBox.shrink()
+                    : Container(
+                        height: 1,
+                        color: dividerColor,
+                      ),
+              ),
+            ],
+          ),
           gap,
           CheckoutWhenText(position: position, localeStrings: localeStrings),
           gap,
@@ -158,7 +168,7 @@ class CheckoutSnippetImage extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 2),
       child: Image(
         image: AssetImage(
-          'assets/images/r$position.jpg',
+          'assets/images/r$position.png',
           package: 'tabby_flutter_inapp_sdk',
         ),
         width: 40,
