@@ -9,6 +9,7 @@ class TabbyPresentationSnippetNonStantard extends StatefulWidget {
   const TabbyPresentationSnippetNonStantard({
     required this.currency,
     required this.lang,
+    this.textStyle,
     this.borderColor = const Color(0xFFD6DED6),
     this.backgroundColor = const Color(0xFFFFFFFF),
     this.textColor = const Color(0xFF292929),
@@ -19,6 +20,7 @@ class TabbyPresentationSnippetNonStantard extends StatefulWidget {
   final Color borderColor;
   final Color backgroundColor;
   final Color textColor;
+  final TextStyle? textStyle;
 
   @override
   State<TabbyPresentationSnippetNonStantard> createState() =>
@@ -96,7 +98,7 @@ class _TabbyPresentationSnippetNonStantardState
                   style: TextStyle(
                     color: widget.textColor,
                     fontFamily: widget.lang == Lang.ar ? 'Arial' : 'Inter',
-                    fontSize: 15,
+                    fontSize: widget.textStyle?.fontSize ?? 15,
                     height: 1.5,
                   ),
                   children: [
@@ -105,7 +107,9 @@ class _TabbyPresentationSnippetNonStantardState
                     ),
                     TextSpan(
                       text: localStrings[2],
-                      style: const TextStyle(
+                      style:   TextStyle(
+                        fontSize: widget.textStyle?.fontSize ?? 15,
+
                         decoration: TextDecoration.underline,
                       ),
                     ),

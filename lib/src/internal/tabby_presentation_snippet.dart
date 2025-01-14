@@ -12,6 +12,7 @@ class TabbyPresentationSnippet extends StatefulWidget {
     required this.price,
     required this.currency,
     required this.lang,
+    this.textStyle,
     this.borderColor = const Color(0xFFD6DED6),
     this.backgroundColor = const Color(0xFFFFFFFF),
     this.textColor = const Color(0xFF292929),
@@ -23,6 +24,7 @@ class TabbyPresentationSnippet extends StatefulWidget {
   final Color borderColor;
   final Color backgroundColor;
   final Color textColor;
+  final TextStyle? textStyle;
 
   @override
   State<TabbyPresentationSnippet> createState() =>
@@ -100,28 +102,31 @@ class _TabbyPresentationSnippetState extends State<TabbyPresentationSnippet> {
                   style: TextStyle(
                     color: widget.textColor,
                     fontFamily: widget.lang == Lang.ar ? 'Arial' : 'Inter',
-                    fontSize: 15,
+                    fontSize: widget.textStyle?.fontSize ?? 15,
                     height: 1.5,
                   ),
                   children: [
                     TextSpan(
                       text: localStrings[1],
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontFamily: 'Inter',
+                        fontSize: widget.textStyle?.fontSize ?? 15,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                     TextSpan(
                       text: localStrings[2],
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontFamily: 'Inter',
+                        fontSize: widget.textStyle?.fontSize ?? 15,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                     TextSpan(text: localStrings[3]),
                     TextSpan(
                       text: localStrings[4],
-                      style: const TextStyle(
+                      style: TextStyle(
+                        fontSize: widget.textStyle?.fontSize ?? 15,
                         decoration: TextDecoration.underline,
                       ),
                     ),

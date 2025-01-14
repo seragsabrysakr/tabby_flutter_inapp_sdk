@@ -7,6 +7,7 @@ class TabbyCheckoutSnippet extends StatefulWidget {
   const TabbyCheckoutSnippet({
     required this.currency,
     required this.price,
+      this.textStyle,
     required this.lang,
     Key? key,
   }) : super(key: key);
@@ -14,7 +15,7 @@ class TabbyCheckoutSnippet extends StatefulWidget {
   final String price;
   final Currency currency;
   final Lang lang;
-
+  final TextStyle? textStyle;
   @override
   State<TabbyCheckoutSnippet> createState() => _TabbyCheckoutSnippetState();
 }
@@ -45,7 +46,7 @@ class _TabbyCheckoutSnippetState extends State<TabbyCheckoutSnippet> {
           child: Text(
             localeStrings[0],
             style: TextStyle(
-              fontSize: 14,
+              fontSize: widget.textStyle?.fontSize ?? 15,
               color: dividerColor,
             ),
           ),
