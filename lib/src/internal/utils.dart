@@ -28,19 +28,20 @@ NavigationResponseAction navigationResponseHandler({
 }
 
 void javaScriptHandler(
-  List<dynamic> message,
+  String message,
   TabbyCheckoutCompletion onResult,
 ) {
-  try {
-    final List<dynamic> events = message.first;
-    final msg = events.first as String;
-    final resultCode = WebViewResult.values.firstWhere(
-      (value) => value.name == msg.toLowerCase(),
-    );
-    onResult(resultCode);
-  } catch (e, s) {
-    printError(e, s);
+  final results = WebViewResult.values
+      .where(
+        (value) => value.name == message.toLowerCase(),
+      )
+      .toList();
+  if (results.isEmpty) {
+    return;
   }
+
+  final resultCode = results.first;
+  onResult(resultCode);
 }
 
 List<String> getLocalStrings({
@@ -96,6 +97,7 @@ const tabbyRejectionTextEn =
 const tabbyRejectionTextAr =
 // ignore: lines_longer_than_80_chars
     'نأسف، تابي غير قادرة على الموافقة على هذه العملية. الرجاء استخدام طريقة دفع أخرى';
+
 String getPrice({
   required String price,
   required Currency currency,
