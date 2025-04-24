@@ -1,6 +1,3 @@
-import 'dart:io';
-
-import 'package:tabby_flutter_inapp_sdk/src/internal/fixtures.dart';
 import 'package:tabby_flutter_inapp_sdk/tabby_flutter_inapp_sdk.dart';
 
 import './enums.dart';
@@ -177,6 +174,7 @@ class SessionConfiguration {
 class CheckoutSession {
   CheckoutSession({
     required this.id,
+    required this.status,
     required this.payment,
     required this.configuration,
   });
@@ -184,12 +182,17 @@ class CheckoutSession {
   factory CheckoutSession.fromJson(Map<String, dynamic> json) {
     return CheckoutSession(
       id: json['id'],
+      status: SessionStatus.values.firstWhere(
+        (e) => e.name == json['status'],
+        orElse: () => SessionStatus.created,
+      ),
       payment: Identifiable.fromJson(json['payment']),
       configuration: SessionConfiguration.fromJson(json['configuration']),
     );
   }
 
   final String id;
+  final SessionStatus status;
   final Identifiable payment;
   final SessionConfiguration configuration;
 }
@@ -388,11 +391,13 @@ class TabbySessionAvailableProducts {
 
 class TabbySession {
   TabbySession({
+    required this.status,
     required this.sessionId,
     required this.paymentId,
     required this.availableProducts,
   });
 
+  final SessionStatus status;
   final String sessionId;
   final String paymentId;
   final TabbySessionAvailableProducts availableProducts;
@@ -419,14 +424,12 @@ class TabbyCheckoutPayload {
   final String merchantCode; // 'ae' | 'sa',
   final Lang lang; // 'en' | 'ar,
   final Payment payment;
-  final merchantUrls = Platform.isIOS ? defaultMerchantUrls : null;
 
   Map<String, dynamic> toJson() {
     return {
       'merchant_code': merchantCode,
       'lang': lang.name,
       'payment': payment,
-      'merchant_urls': merchantUrls,
     };
   }
 }

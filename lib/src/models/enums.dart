@@ -103,7 +103,7 @@ extension EnvironmentExt on Environment {
   String get host {
     switch (this) {
       case Environment.production:
-        return 'https://api.tabby.ai/';
+        return 'https://api.tabby.ai';
     }
   }
 
@@ -120,6 +120,11 @@ enum WebViewResult {
   authorized,
   rejected,
   expired,
+}
+
+enum SessionStatus {
+  created,
+  rejected,
 }
 
 enum AnalyticsEvent {

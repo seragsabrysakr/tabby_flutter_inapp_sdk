@@ -33,6 +33,9 @@ class TabbySDK implements TabbyWithRemoteDataSource {
 
   static final TabbySDK _singleton = TabbySDK._();
 
+  static const String rejectionTextEn = tabbyRejectionTextEn;
+  static const String rejectionTextAr = tabbyRejectionTextAr;
+
   final _anonymousId = uuid.v4();
 
   late final String _apiKey;
@@ -64,7 +67,7 @@ class TabbySDK implements TabbyWithRemoteDataSource {
   Future<TabbySession> createSession(TabbyCheckoutPayload payload) async {
     checkSetup();
     final response = await http.post(
-      Uri.parse('${_host}api/v2/checkout'),
+      Uri.parse('$_host/api/v2/checkout'),
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
@@ -86,12 +89,14 @@ class TabbySDK implements TabbyWithRemoteDataSource {
         installments: installmentsPlan != null
             ? TabbyProduct(
                 type: TabbyPurchaseType.installments,
-                webUrl: installmentsPlan.webUrl)
+                webUrl: installmentsPlan.webUrl,
+              )
             : null,
       );
 
       final tabbyCheckoutSession = TabbySession(
         sessionId: checkoutSession.id,
+        status: checkoutSession.status,
         paymentId: checkoutSession.payment.id,
         availableProducts: availableProducts,
       );
