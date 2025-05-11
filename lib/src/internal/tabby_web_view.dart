@@ -7,6 +7,7 @@ import 'package:tabby_flutter_inapp_sdk/tabby_flutter_inapp_sdk.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:webview_flutter_android/webview_flutter_android.dart';
 
+// new
 const tabbyColor = Color.fromRGBO(62, 237, 191, 1);
 
 typedef TabbyCheckoutCompletion = void Function(WebViewResult resultCode);
