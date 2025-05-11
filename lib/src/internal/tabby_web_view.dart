@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:tabby_flutter_inapp_sdk/tabby_flutter_inapp_sdk.dart';
 import 'package:webview_flutter/webview_flutter.dart';
+import 'package:webview_flutter_android/webview_flutter_android.dart';
 
 const tabbyColor = Color.fromRGBO(62, 237, 191, 1);
 
@@ -65,6 +66,12 @@ class _TabbyWebViewState extends State<TabbyWebView> {
   @override
   void initState() {
     super.initState();
+
+    // Initialize WebView for Android
+    if (Platform.isAndroid) {
+      WebViewPlatform.instance = AndroidWebViewPlatform();
+    }
+
     _webViewController = WebViewController(
       onPermissionRequest: (request) async {
         final resources = request.platform.types.toList();
